@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your VUMA Tanzania Account</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #0B3B2F, #1a5c48);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #F9C74F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #0B3B2F;
+        }
+        .content {
+            padding: 30px;
+        }
+        .otp-code {
+            background-color: #f0f5ee;
+            padding: 20px;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            color: #0B3B2F;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        .button {
+            display: inline-block;
+            background-color: #F9C74F;
+            color: #0B3B2F;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f9fbf7;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <span>VUMA</span>
+            </div>
+            <h1>Welcome to VUMA Tanzania!</h1>
+            <p>Verify your email address to get started</p>
+        </div>
+        
+        <div class="content">
+            <p>Dear <strong>{{ name }}</strong>,</p>
+            
+            <p>Thank you for registering with VUMA Tanzania. Please use the verification code below to complete your registration:</p>
+            
+            <div class="otp-code">
+                {{ otp_code }}
+            </div>
+            
+            <p>This code will expire in <strong>10 minutes</strong>.</p>
+            
+            <div class="warning">
+                <strong>⚠️ Security Note:</strong> Never share this OTP with anyone. VUMA Tanzania staff will never ask for your verification code.
+            </div>
+            
+            <p>If you didn't create an account with VUMA Tanzania, please ignore this email.</p>
+            
+            <p style="text-align: center;">
+                <a href="{{ verification_url }}" class="button">Verify Email Address</a>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 VUMA Tanzania. All rights reserved.</p>
+            <p>Building a better Tanzania through innovation and collaboration.</p>
+        </div>
+    </div>
+</body>
+</html>
