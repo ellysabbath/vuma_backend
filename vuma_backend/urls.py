@@ -17,6 +17,8 @@ urlpatterns = [
     # In vuma_backend/urls.py
     path('api/news/', include('news.urls')),
     path('api/programs/', include('programs.urls')),
+    path('', include('leadership.urls')),
+    path('api/', include('contacts.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New News Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9fbf7;
+        }
+        .header {
+            background: linear-gradient(135deg, #0B3B2F, #1a5c48);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .news-title {
+            color: #0B3B2F;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .news-date {
+            color: #F9C74F;
+            font-size: 12px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .news-content {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            background: #F9C74F;
+            color: #0B3B2F;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #f8b500;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #F9C74F;
+            text-decoration: none;
+        }
+        .badge {
+            background: #F9C74F;
+            color: #0B3B2F;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px;
+            }
+            .news-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VUMA Tanzania</h1>
+            <p>Youth Empowerment & Climate Action</p>
+        </div>
+        <div class="content">
+            <div class="badge">NEW UPDATE</div>
+            <h2 class="news-title">{{ title }}</h2>
+            <div class="news-date">
+                <i>📅 {{ date }}</i>
+            </div>
+            <div class="news-content">
+                <p>{{ content }}</p>
+                {% if content|length >= 200 %}
+                <p style="color: #F9C74F; font-style: italic;">... read more on our website</p>
+                {% endif %}
+            </div>
+            <div style="text-align: center;">
+                <a href="{{ site_url }}/news/{{ news_id }}" class="button">Read Full Article</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>You are receiving this email because you are registered with VUMA Tanzania.</p>
+            <p>&copy; {% now "Y" %} VUMA Tanzania. All rights reserved.</p>
+            <p><a href="{{ site_url }}/unsubscribe">Unsubscribe</a> | <a href="{{ site_url }}">Visit our website</a></p>
+        </div>
+    </div>
+</body>
+</html>

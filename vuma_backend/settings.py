@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'dashboard',
     'news',
     'programs',
+    'leadership',
+    'contacts',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +111,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.137.1:3000",
-    "http://192.168.137.83:3000",  # Add your computer's IP
+    "http://192.168.137.83:3000",
+    "https://vumatanzaniaa.web.app", # Add your computer's IP
 ]
 
 # Or allow all origins for development (easier for testing)
@@ -173,6 +176,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'qfix910@gmail.com'
-EMAIL_HOST_PASSWORD = 'sbntxflapmitoakx'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_USER = 'vumainfo5@gmail.com'
+EMAIL_HOST_PASSWORD = 'egtfzrlmolqcuvpq'
+DEFAULT_FROM_EMAIL = 'VUMA TANZANIA <vumainfo5@gmail.com>'
+
+# Custom settings
+SITE_URL = 'https://vumatanzaniaa.web.app'  # Update this to your frontend URL
