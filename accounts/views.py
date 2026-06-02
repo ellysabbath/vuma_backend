@@ -22,7 +22,7 @@ class RegisterView(APIView):
             
             # Send OTP via email
             subject = 'Verify Your VUMA Tanzania Account'
-            verification_url = f'http://localhost:3000/verify-otp?email={user.email}'
+            verification_url = f'https://vumatanzaniaa.web.app/verify-otp?email={user.email}'
             
             html_message = f"""
             <!DOCTYPE html>

@@ -175,7 +175,7 @@ class NewsList(APIView):
                 'content': news.content[:200] if news.content else '',
                 'image_url': news.image_base64[:100] + '...' if news.image_base64 else None,
                 'date': news.created_at.strftime('%B %d, %Y'),
-                'site_url': settings.SITE_URL if hasattr(settings, 'SITE_URL') else 'http://localhost:3000',
+                'site_url': settings.SITE_URL if hasattr(settings, 'SITE_URL') else 'https://vumatanzaniaa.web.app',
                 'news_id': news.id
             }
             
