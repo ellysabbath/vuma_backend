@@ -19,6 +19,7 @@ urlpatterns = [
     path('api/programs/', include('programs.urls')),
     path('', include('leadership.urls')),
     path('api/', include('contacts.urls')),
+    path('api/',include('donate.urls')),
 ]
 
 if settings.DEBUG:

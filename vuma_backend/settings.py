@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'volunteers',
     'dashboard',
     'news',
+    'donate',
     'programs',
     'leadership',
     'contacts',
