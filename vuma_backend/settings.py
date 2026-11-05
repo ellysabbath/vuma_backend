@@ -2,15 +2,27 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-8x!q9#k3m$p7v&b2n%c4xw6e9r0t1y2u3i4o5p6a7s8d9f0g1h2j3k4l5'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-8x!q9#k3m$p7v&b2n%c4xw6e9r0t1y2u3i4o5p6a7s8d9f0g1h2j3k4l5'
+)
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Add your phone's IP address here
 # Find your computer's IP address: Run 'ipconfig' on Windows or 'ifconfig' on Mac/Linux
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.137.83', '192.168.1.100', '*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.137.83',
+    '192.168.1.100',
+    '.vercel.app',
+    '*',
+]
 
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -72,12 +84,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vuma_backend.wsgi.application'
 
+# ---------------------------------------------------------------------------
+# DATABASE — Neon PostgreSQL
+# ---------------------------------------------------------------------------
+# Set DATABASE_URL in the Vercel dashboard (or export it in your terminal)
+# to your Neon *direct* connection string:
+#   postgresql://neondb_owner:npg_J6NsKwahe4Vx@ep-divine-wind-bcjh9nrk.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require
+#
+# The fallback below is the same string hardcoded so the project works
+# immediately without environment variables. For production, prefer the
+# environment variable so the credential is not in source control.
+DATABASE_URL = os.environ.get(
+    'DATABASE_URL',
+    'postgresql://neondb_owner:npg_J6NsKwahe4Vx@ep-divine-wind-bcjh9nrk.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require',
+)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        DATABASE_URL,
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
+
+# Neon requires SSL — make sure it's set even if the URL lacks sslmode.
+DATABASES['default'].setdefault('OPTIONS', {})
+DATABASES['default']['OPTIONS'].setdefault('sslmode', 'require')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,7 +146,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://192.168.137.1:3000",
     "http://192.168.137.83:3000",
-    "https://vumatanzaniaa.web.app", # Add your computer's IP
+    "https://vumatanzaniaa.web.app",
 ]
 
 # Or allow all origins for development (easier for testing)
@@ -179,7 +211,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'vumainfo5@gmail.com'
-EMAIL_HOST_PASSWORD = 'egtfzrlmolqcuvpq'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'egtfzrlmolqcuvpq')
 DEFAULT_FROM_EMAIL = 'VUMA TANZANIA <vumainfo5@gmail.com>'
 
 # Custom settings
