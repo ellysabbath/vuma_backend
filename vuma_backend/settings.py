@@ -6,24 +6,19 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get(
-    'SECRET_KEY',
-    'django-insecure-8x!q9#k3m$p7v&b2n%c4xw6e9r0t1y2u3i4o5p6a7s8d9f0g1h2j3k4l5'
-)
+SECRET_KEY = 'django-insecure-8x!q9#k3m$p7v&b2n%c4xw6e9r0t1y2u3i4o5p6a7s8d9f0g1h2j3k4l5'
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = True
 
-# Add your phone's IP address here
-# Find your computer's IP address: Run 'ipconfig' on Windows or 'ifconfig' on Mac/Linux
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.137.83',
     '192.168.1.100',
     '.vercel.app',
+    'vumabackend.vercel.app',
     '*',
 ]
-
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -85,19 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'vuma_backend.wsgi.application'
 
 # ---------------------------------------------------------------------------
-# DATABASE — Neon PostgreSQL
+# DATABASE — Neon PostgreSQL (hardcoded direct connection)
 # ---------------------------------------------------------------------------
-# Set DATABASE_URL in the Vercel dashboard (or export it in your terminal)
-# to your Neon *direct* connection string:
-#   postgresql://neondb_owner:npg_J6NsKwahe4Vx@ep-divine-wind-bcjh9nrk.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require
-#
-# The fallback below is the same string hardcoded so the project works
-# immediately without environment variables. For production, prefer the
-# environment variable so the credential is not in source control.
-DATABASE_URL = os.environ.get(
-    'DATABASE_URL',
-    'postgresql://neondb_owner:npg_J6NsKwahe4Vx@ep-divine-wind-bcjh9nrk.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require',
-)
+DATABASE_URL = 'postgresql://neondb_owner:npg_J6NsKwahe4Vx@ep-divine-wind-bcjh9nrk.c-16.us-east-1.aws.neon.tech/neondb?sslmode=require'
 
 DATABASES = {
     'default': dj_database_url.parse(
@@ -107,23 +92,14 @@ DATABASES = {
     )
 }
 
-# Neon requires SSL — make sure it's set even if the URL lacks sslmode.
 DATABASES['default'].setdefault('OPTIONS', {})
 DATABASES['default']['OPTIONS'].setdefault('sslmode', 'require')
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -140,7 +116,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-# Update CORS settings to allow your phone's IP
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -149,12 +124,9 @@ CORS_ALLOWED_ORIGINS = [
     "https://vumatanzaniaa.web.app",
 ]
 
-# Or allow all origins for development (easier for testing)
 CORS_ALLOW_ALL_ORIGINS = True
-
 CORS_ALLOW_CREDENTIALS = True
 
-# Allow all methods and headers
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -205,14 +177,14 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
 }
 
-# EMAIL CONFIGURATION - Gmail SMTP (works on phone too)
+# EMAIL CONFIGURATION - Gmail SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'vumainfo5@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'egtfzrlmolqcuvpq')
+EMAIL_HOST_PASSWORD = 'egtfzrlmolqcuvpq'
 DEFAULT_FROM_EMAIL = 'VUMA TANZANIA <vumainfo5@gmail.com>'
 
 # Custom settings
-SITE_URL = 'https://vumatanzaniaa.web.app'  # Update this to your frontend URL
+SITE_URL = 'https://vumatanzaniaa.web.app'
